@@ -1,0 +1,14 @@
+{
+    "name": "miniframework/miniframework",
+    "authors": [
+        {
+            "name": "Arthur"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "MF\\": "vendor/MF/"
+        }
+    }
+}
