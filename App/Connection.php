@@ -10,7 +10,7 @@
             $servidor = "localhost";
             $usuario =  "root";
             $senha = "";
-            $banco = "mvc";
+            $banco = "smart_hospital";
 
             try{
                 //Instanciando minha conexão

@@ -10,5 +10,8 @@
             "App\\": "App/",
             "MF\\": "vendor/MF/"
         }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
     }
 }

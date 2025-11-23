@@ -1,0 +1,14 @@
+{
+    "device_id": "simulator-001",
+    "timestamp": "2025-11-23T10:22:10.541137Z",
+    "temperature": 21.3,
+    "humidity": 63,
+    "oxygen": 93,
+    "co2": 350,
+    "energy": {
+        "instant": 1.28,
+        "total": 4.33,
+        "peak": 1.5
+    },
+    "received_at": "2025-11-23T10:22:10Z"
+}

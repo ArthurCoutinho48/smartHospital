@@ -1,10 +1,37 @@
-<h1>VASCO DA GAMAAAAAAA</h1>
+<div class="backgroundLogin">
+  <div class="header">
+    <div class="icon">
+      <ion-icon name="medical-sharp"></ion-icon>
+    </div>
+    <h1 class="title">Smart Hospital 4.0</h1>
+    <p class="subTitle">Faça login para acessar sua conta</p>
+  </div>
 
-<?php
-    foreach($this->view->dados as $indice => $produto){
-        echo $produto['id'].' -- ';
-        echo $produto['descricao'].' -- ';
-        echo $produto['preco'];
-        echo '<br>';
-    }
-?>
+  <form id="formLogin" class="form-container">
+
+      <!-- Email -->
+      <div class="textfielde" id="textEmail">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="Digite seu email" class="input">
+        
+        <!-- Mensagens de erro (poderia ser controlado via JS) -->
+        <small id="erroEmail">Mensagem de erro...</small>
+      </div>
+
+      <!-- Senha -->
+      <div class="textfielde" id="textPass">
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" placeholder="Digite sua senha" class="input">
+        
+         <!-- Mensagens de erro (poderia ser controlado via JS) -->
+        <small id="erroPass">Mensagem de erro...</small>
+      </div>
+
+      <!-- Botão -->
+      <button class="btn-login" type="submit" nane="login" id="login">Entrar</button>
+
+  </form>
+</div>
+
+<script src="assets/js/validaLogin.js"></script>
+<link rel="stylesheet" href="assets/css/login.css">

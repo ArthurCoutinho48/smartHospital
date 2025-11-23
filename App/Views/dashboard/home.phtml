@@ -1,0 +1,356 @@
+<div class="container">
+
+  <!-- =============== Navigation ================ -->
+  <div class="navigation">
+    <ul>
+      <li>
+        <a href="">
+          <span class="icon">
+            <ion-icon name="medical-sharp"></ion-icon>
+          </span>
+          <span class="title">Smart Hospital 4.0</span>
+        </a>
+      </li>
+
+      <li class="hovered">
+        <a href="#section-gestao">
+          <span class="icon">
+            <ion-icon name="grid-outline"></ion-icon>
+          </span>
+          <span class="title">Gestão de Projetos</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#section-iot">
+          <span class="icon">
+            <ion-icon name="wifi-outline"></ion-icon>
+          </span>
+          <span class="title">Monitoramento IoT</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#section-analise">
+          <span class="icon">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+          </span>
+          <span class="title">Análise e Insights</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#section-ia">
+          <span class="icon">
+            <ion-icon name="document-text-outline"></ion-icon>
+          </span>
+          <span class="title">Relatórios com IA</span>
+        </a>
+      </li>
+
+      <li>
+        <a onclick="sair()">
+          <span class="icon">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </span>
+          <span class="title">Sign Out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- ========================= Main ==================== -->
+  <div class="main">
+    <div class="topbar">
+      <div class="toggle">
+        <ion-icon name="menu-outline"></ion-icon>
+      </div>
+    </div>
+
+    <!-- ========================= DASHBOARD DE GESTÃO DE PROJETOS ==================== -->
+    <div class="section active" id="section-gestao">
+      <!-- ======================= Cards ================== -->
+      <div class="cardBox">
+        <div class="card">
+          <div>
+            <div class="numbers"><h4><?= $this->view->dadoVelocity['velocity_pontos'] ?></h4></div>
+            <div class="cardName">Velocity (Pontos)</div>
+          </div>
+
+          <div class="iconBx">
+            <ion-icon name="flash"></ion-icon>
+          </div>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="numbers"><h4><?= $this->view->dadoCPI['cpi'] ?></h4></div>
+            <div class="cardName">CPI (Índice de Custo)</div>
+          </div>
+
+          <div class="iconBx">
+            <ion-icon name="bar-chart"></ion-icon>
+          </div>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="numbers"><h4><?= $this->view->dadoSPI['spi'] ?></h4></div>
+            <div class="cardName">SPI (Índice de Prazo)</div>
+          </div>
+
+          <div class="iconBx">
+            <ion-icon name="trending-up"></ion-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="chartsBx">
+        <div class="chart sprint">
+          <h4>Gráfico de Burndown da Sprint</h4>
+
+          <div id="burndownData"
+              data-response='<?= json_encode($this->view->dadoBurndown, JSON_UNESCAPED_UNICODE) ?>'>
+          </div>
+
+          <div class="burndown">
+            <canvas id="burndownCanvas" aria-label="Burndown chart"></canvas>
+          </div>
+
+        </div>
+
+        <div class="chart eixoY">
+          <h4>Product Backlog (Priorizado)</h4>
+
+          <?php foreach($this->view->dadoBacklog as $indice => $valor) { ?>
+            <div class="cardBacklog">
+              <span><?= $valor['codigo'] ?>: <?= $valor['titulo']?> -> <?= $valor['descricao']?></span>
+            </div>
+          <?php }?>
+        </div>
+
+      </div>
+
+      <!-- ================ Order Details List ================= -->
+      <div class="details">
+        <div class="recentOrders">
+          <div class="cardHeader">
+            <h2>Matriz de Risco</h2>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <td>ID</td>
+                <td>Risco</td>
+                <td>Probabilidade</td>
+                <td>Impacto</td>
+                <td>Ação de Mitigação</td>
+              </tr>
+            </thead>
+
+            <tbody>
+              <?php foreach($this->view->dadoRiscos as $indice => $valor) { ?>
+                <tr>
+                  <td><?= $valor['sprint_id'] ?></td>
+                  <td><?= $valor['risco'] ?></td>
+                  <td><span class="status <?= 
+                                $valor['probabilidade'] == 'Alta' ? 'vermelho' :
+                                ($valor['probabilidade'] == 'Média' ? 'amarelo' :
+                                ($valor['probabilidade'] == 'Baixa' ? 'verde' : ''))?>"><?= $valor['probabilidade'] ?></span></td>
+                  <td><span class="status <?= 
+                                $valor['impacto'] == 'Alta' ? 'vermelho' :
+                                ($valor['impacto'] == 'Média' ? 'amarelo' :
+                                ($valor['impacto'] == 'Baixa' ? 'verde' : ''))?>"><?= $valor['impacto'] ?></span></td>
+                  <td><?= $valor['acao_mitigacao'] ?></td>
+                </tr>
+              <?php }?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= DASHBOARD DE MONITORAMENTO IOT ==================== -->
+    <div class="section " id="section-iot">
+
+      <div class="chartsBx iot_2">
+        <div class="chart">
+          <h4>Ocupação dos Leitos</h4>
+
+          <!-- ÚNICA barra: altere data-value para o percentual desejado -->
+          <div id="singleStatus" class="status-row" data-value="83.87">
+            <!--<span class="status-name">CRIOLIPÓLISE POLARYS</span>-->
+            <span class="status-percent">0%</span>
+
+            <div class="status-bar" aria-hidden="false" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="status-fill" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chartsBx iot_3">
+
+        <div class="chartIoT">
+            <h4>Temperatura & Umidade</h4>
+            <p><strong>Temperatura:</strong> <span id="tempVal">--</span>°C <span id="tempStatus"></span></p>
+            <p><strong>Umidade:</strong> <span id="humVal">--</span>% <span id="humStatus"></span></p>
+
+            <canvas id="tempHumChart"></canvas>
+        </div>
+
+        <div class="chartIoT">
+            <h4>Oxigênio</h4>
+            <p><strong>Nível:</strong> <span id="o2Val">--</span>% <span id="o2Status"></span></p>
+
+            <canvas id="o2Chart"></canvas>
+        </div>
+
+        <div class="chartIoT">
+            <h4>CO₂</h4>
+            <p><strong>Nível:</strong> <span id="co2Val">--</span> ppm <span id="co2Status"></span></p>
+
+            <canvas id="co2Chart"></canvas>
+        </div>
+
+      </div>
+
+      <div class="chartsBx iot_2">
+        <div class="chartIoT">
+          <h4>Consumo de Energia</h4>
+          <p><strong>Total:</strong> <span id="energyTotal">--</span> kW</p>
+          <p><strong>Pico:</strong> <span id="energyPeak">--</span> kW</p>
+
+          <canvas id="energyChart"></canvas>
+        </div>
+      </div>
+      
+      <div class="chartsBx iot_2">
+
+        <div class='tableauPlaceholder' id='viz1763746136294' style='position: relative'><noscript><a href='#'><img alt='Smart Hospital  ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Li&#47;Livro1_17637448330240&#47;SmartHospital&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Livro1_17637448330240&#47;SmartHospital' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Li&#47;Livro1_17637448330240&#47;SmartHospital&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1763746136294');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='777px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+
+      </div>
+
+    </div>
+
+    <!-- ========================= MÓDULO DE ANÁLISE E INSIGHTS ==================== -->
+    <div class="section " id="section-analise">
+      
+      <div id="iot-history"
+        data-json='<?= json_encode($this->view->iotHistoryJson, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_QUOT | JSON_HEX_AMP) ?>'>
+      </div>
+
+      <div class="chartsBx iot_2">
+        <div class="chartIoT">
+          <h4>Energia Instantânea (kW)</h4>
+
+          <canvas id="chartEnergy"></canvas>
+        </div>
+
+        <div class="chartIoT">
+          <h4>CO₂ (ppm)</h4>
+
+          <div>
+                <canvas id="chartCO2"></canvas>
+          </div>
+        </div>
+
+        <div class="chart">
+
+          <h4>Data Storytelling: Conclusões</h4>
+
+          <br><br>
+
+          <p>
+            A análise integrada das leituras IoT revela um padrão de oscilação energética intenso, com picos superiores a 1400 kW seguidos de quedas abruptas. Esses ciclos são consistentes com o acionamento intermitente de sistemas de alto consumo, como climatização hospitalar e equipamentos de suporte crítico — diretamente relacionados à necessidade identificada na User Story US-05 (Monitoramento de Consumo de Energia).
+
+            <br><br>
+
+            Os níveis de CO₂, variando entre 350 e 1400 ppm, apresentam correlação clara com esses períodos de alta demanda. Esse comportamento evidencia momentos de ocupação elevada ou ventilação insuficiente, reforçando a importância da User Story US-04 (Monitoramento de CO₂) para análises ambientais preditivas.
+            
+            <br><br>
+
+            Apesar disso, a temperatura permaneceu entre 20°C e 27°C, dentro do intervalo típico de conforto. Esse padrão indica ajustes constantes do sistema HVAC, compatíveis com a necessidade descrita na User Story US-08 (Automação HVAC Baseada em Temperatura e Ocupação).
+
+            <br><br>
+
+            Em conjunto, os dados apontam para um ambiente hospitalar altamente responsivo, porém com oportunidades claras de eficiência energética, especialmente na redução dos picos de carga e estabilização do ciclo térmico.
+          </p>
+
+          <br><br>
+
+          <h4>Insight Acionável</h4>
+
+          <br><br>
+
+          <p>
+            Priorizar a implementação completa da User Story “US-08 — Automação HVAC por Zona” pode reduzir significativamente os picos energéticos observados, suavizar as oscilações de carga e melhorar a qualidade do ar.
+
+            <br><br>
+
+            Combinada aos dados de US-04 (CO₂) e US-05 (Energia), esta automação tende a criar um loop adaptativo mais estável — elevando a eficiência e fortalecendo o ROI operacional do sistema Smart Hospital 4.0.
+          </p>
+          
+        </div>
+
+      </div>
+
+    </div>
+    
+    <!-- ========================= RELATÓRIOS INTELIGENTES COM IA ==================== -->
+    <div class="section" id="section-ia">
+      
+      <div class="cardBox IA">
+        <div class="chartIA">
+          <div class="chartIAButton">
+            <button onclick="gerarRelatorio()">Gerar Relatório Executivo</button>
+          </div>
+
+          <div class="chartIAText">
+            <pre id="saida1"></pre>
+          </div>
+        </div>
+
+        <div class="chartIA">
+          <div class="chartIAButton">
+            <button onclick="gerarLicoes()">Gerar Lições Aprendidas</button>
+          </div>
+
+          <div class="chartIAText">
+            <pre id="saida2"></pre>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+
+    <div id="loadingBox" class="loading-box" style="display:none;">
+      <div class="loading-spinner"></div>
+      <p>Gerando relatório com IA...<br>Por favor, aguarde.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+    const initialIoT = <?php echo ($this->iotDataJson ?? 'null'); ?>;
+    const API_URL = "/iot/data";
+</script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+<!-- plugin para mostrar labels sobre as barras -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+<!-- JS -->
+<script src="assets/js/signOut.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/iot.js"></script>
+<script src="assets/js/iot_analysis.js"></script>
+<script src="assets/js/reports.js"></script>

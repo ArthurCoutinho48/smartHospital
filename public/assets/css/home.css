@@ -1,0 +1,501 @@
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--p-02);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.section {
+  display: none; /* todas as seções começam escondidas */
+}
+
+.section.active {
+  display: block; /* a seção ativa fica visível */
+}
+
+/* ======================= Cards ====================== */
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.iot{
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cardBox .card {
+  position: relative;
+  background: var(--p-02);
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.120);
+}
+
+.cardBox .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: var(--s-03);
+}
+
+.cardBox .card .cardName {
+  color: var(--s-03);
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.cardBox .card .iconBx {
+  font-size: 3.5rem;
+  color: var(--s-03);
+}
+
+.cardBox .card:hover {
+  background: var(--p-01);
+}
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx {
+  color: var(--p-02);
+}
+
+.section{
+  display: none;
+}
+
+.section.active{
+  display: block;
+}
+
+/* ================== Charts JS ============== */
+
+.burndown{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.chartsBx{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 30px;
+}
+
+.iot_2{
+  grid-template-columns: 1fr;
+}
+
+.iot_3{
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.inferior {
+  grid-template-columns: 1fr; /* apenas uma coluna */
+}
+
+.chartsBx .chart{
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.120);
+  border-radius: 20px;
+}
+
+.sprint{
+  height: 500px;
+}
+
+.eixoY{
+  max-height: 500px;       /* ajuste conforme necessário */
+  overflow-y: auto;        /* ativa o scroll vertical */
+  border-radius: 6px;
+}
+
+.chartsBx .chart h4{
+  position: relative;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--s-03);
+}
+
+.cardBacklog{
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+   color: var(--p-02);
+  background: var(--s-03);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.chartIoT {
+  width: 100%;
+  max-width: auto; /* impede de ficar largo demais */
+  max-height: 440px;     
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.120);
+  margin: 0 auto;   /* centralizar */
+}
+
+.chartIoT canvas {
+  width: 100% !important;
+  height: auto !important; /* 👈 remove o repuxamento */
+  margin-top: 30px;
+}
+
+/* ================== Order Details List ============== */
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+  margin-top: 10px;
+}
+
+.details .recentOrders {
+  position: relative;
+  display: grid;
+  min-height: 350px;
+  background: var(--p-02);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.120);
+  border-radius: 20px;
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--s-03);
+}
+.cardHeader .btn {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--p-01);
+  text-decoration: none;
+  color: var(--p-02);
+  border-radius: 6px;
+}
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.details table td,
+.details table th {
+  text-align: left !important;
+}
+
+.details table thead td {
+  font-weight: 600;
+}
+.details .recentOrders table tr {
+  color: var(--s-03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child {
+  border-bottom: none;
+}
+.details .recentOrders table tbody tr:hover {
+  background: var(--p-03);
+  color: var(--s-03);
+}
+.details .recentOrders table tr td {
+  padding: 10px;
+}
+.details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+
+.status.verde {
+  padding: 2px 4px;
+  background: var(--s-01);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.amarelo {
+  padding: 2px 4px;
+  background: var(--d-02);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.vermelho {
+  padding: 2px 4px;
+  background: var(--d-01);
+  color: var(--s-03);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.IA{
+  grid-template-columns: repeat(2, 1fr)
+}
+
+.chartIA{
+  position: relative;
+  background: var(--p-02);
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.120);
+}
+
+.chartIAButton{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chartIAButton button{
+  width: 400px;
+  padding: 16px 0px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 3px;
+  background-color: var(--p-01);
+  cursor: pointer;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.150);
+  color: var(--p-02);
+  text-decoration: none;
+}
+
+.chartIAText{
+  height: 635px;
+  width: 100%;
+  background-color: var(--p-03);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.120);
+  border-radius: 10px;  
+  font-size: 12px;
+}
+
+.chartIAText pre{
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ======================= Progresso ====================== */
+
+.status-row{
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin-top: 20px;
+  gap:12px;
+  color: var(--s-03);
+}
+
+.status-name{
+  width: 260px;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-percent{
+  width: 70px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: right;
+  color: var(--s-03);
+}
+
+.status-bar {
+  flex:1;
+  height:20px;
+  background:#ececec;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.status-fill {
+  height:100%;
+  width:0%;
+  border-radius:12px;
+  /* gradiente em movimento opcional */
+  background: linear-gradient(270deg, #00b7ff 0%, #38c8ff 40%, #00e0ff 70%, var(--p-01) 100%); /* #009bd8  */
+  background-size:300% 100%;
+  animation: gradientShift 4s linear infinite;
+  transition: width 900ms cubic-bezier(.2,.9,.2,1);
+  position:relative;
+}
+
+.status-fill::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.10) 0px,
+    rgba(255,255,255,0.10) 10px,
+    rgba(255,255,255,0.04) 10px,
+    rgba(255,255,255,0.04) 20px
+  );
+  background-size:40px 40px;
+  animation: stripesMove 1.2s linear infinite;
+  mix-blend-mode: overlay;
+  pointer-events:none;
+}
+
+@keyframes gradientShift {
+  0%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+  100%{ background-position:0% 50%; }
+}
+
+@keyframes stripesMove {
+  from{ background-position:0 0; }
+  to{ background-position:40px 40px; }
+}
+
+/* texto contraste se fill grande (opcional) */
+.status-percent.on-fill {
+  color: var(--s-03);
+  font-weight:700;
+}
+
+/* responsivo */
+@media (max-width:520px){
+  .status-name{ width:140px; font-size:13px; }
+  .status-percent{ width:60px; font-size:13px; }
+}
+
+/* ====================== Responsive Design ========================== */
+@media (max-width: 991px) {
+  .chartsBx{
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  .status.inProgress {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  .user {
+    min-width: 40px;
+  }
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}

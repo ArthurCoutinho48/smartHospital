@@ -1,0 +1,155 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.backgroundLogin{
+    height: 100vh;
+    background: var(--p-01);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+    text-align: center;
+    
+    .title{
+        font-size: 2rem;
+        color: var(--p-02);
+    }
+
+    .subTitle{
+        color: var(--p-03);
+        font-size: 0.9rem;
+    }
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-decoration: none;
+    color: var(--p-02);
+    font-size: 5rem;
+}
+
+.form-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.textfielde{
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.textfielde > label{
+    color: var(--p-02);
+    letter-spacing: 0.5px;
+}
+
+.textfielde > input{
+    width: 100%;
+    border: 2px solid var(--p-02);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: var(--p-01); /* Cor de fundo do input */
+    color: var(--p-02); /* Cor do texto no input */
+    font-size: 14px; /* Alterei o font-size para algo mais legível */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.150);
+    outline: none; /* Retira o contorno padrão */
+    transition: all 0.3s ease; /* Suaviza a transição das alterações */
+}
+
+.textfielde > input:focus{
+    background-color: var(--p-02); /* Cor de fundo quando o input está em foco */
+    color: var(--p-01); /* Cor do texto quando o input está em foco */
+    border-color: var(--p-03); /* Alteração da cor da borda quando em foco */
+}
+
+.textfielde > input:focus::placeholder {
+    color: var(--p-01); /* Cor do texto do placeholder quando o input está em foco */
+}
+
+.textfielde > input::placeholder {
+  color: var(--p-02);
+  opacity: 0.2;
+}
+
+.textfielde small{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.textfielde small{
+    font-size: 12px;
+}
+
+.btn-login {
+    width: 400px;
+    padding: 16px 0px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background-color: var(--p-02);
+    cursor: pointer;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.150);
+    color: var(--p-01);
+    text-decoration: none;
+}
+
+.btn-login:hover{
+    background-color: #ffffffd5;
+}
+
+/* Error and Success */
+
+.textfielde.erro{
+    padding-bottom: 20px;
+}
+
+.textfielde.success input {
+    border-color: var(--s-01);
+}  
+
+.textfielde.erro input {
+    border-color: var(--d-01);
+}
+
+.textfielde.success input:focus-visible {
+    outline: none;
+}
+
+.textfielde.erro input:focus-visible {
+    outline: none;
+}
+
+.textfielde.erro small {
+    display: block;
+    visibility: visible;
+    color: var(--d-01);
+}
