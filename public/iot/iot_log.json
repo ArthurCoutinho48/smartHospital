@@ -76704,5 +76704,57 @@
             "total": 4.33,
             "peak": 1.5
         }
+    },
+    {
+        "device_id": "simulator-001",
+        "timestamp": "2025-11-27T18:39:23.161722Z",
+        "temperature": 26.5,
+        "humidity": 40,
+        "oxygen": 94,
+        "co2": 1251,
+        "energy": {
+            "instant": 1.07,
+            "total": 5.19,
+            "peak": 3.46
+        }
+    },
+    {
+        "device_id": "simulator-001",
+        "timestamp": "2025-11-27T18:39:47.371471Z",
+        "temperature": 23.2,
+        "humidity": 43,
+        "oxygen": 91,
+        "co2": 1233,
+        "energy": {
+            "instant": 1.59,
+            "total": 7.15,
+            "peak": 3.2
+        }
+    },
+    {
+        "device_id": "simulator-001",
+        "timestamp": "2025-11-27T18:39:52.444129Z",
+        "temperature": 20.8,
+        "humidity": 45,
+        "oxygen": 99,
+        "co2": 1384,
+        "energy": {
+            "instant": 3.34,
+            "total": 0.52,
+            "peak": 3.34
+        }
+    },
+    {
+        "device_id": "simulator-001",
+        "timestamp": "2025-11-27T18:39:57.528109Z",
+        "temperature": 23.8,
+        "humidity": 56,
+        "oxygen": 98,
+        "co2": 1353,
+        "energy": {
+            "instant": 1.35,
+            "total": 7.57,
+            "peak": 2.55
+        }
     }
 ]
